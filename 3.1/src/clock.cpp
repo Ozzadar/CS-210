@@ -12,7 +12,8 @@ std::array<std::string, 4> Clock::GetClockFace(bool isTwentyFourHour, time_t tim
 
     std::string lid (faceWidth, '*');
     std::string title { isTwentyFourHour ? "24-Hour Clock" : "12-Hour Clock" };
-    std::string timeString = FormatTimeToString(time, isTwentyFourHour ? TWENTY_FOUR_HOUR_FORMAT_STRING : TWELVE_HOUR_FORMAT_STRING);
+    std::string timeString = formatTimeToString(time, isTwentyFourHour ? TWENTY_FOUR_HOUR_FORMAT_STRING
+                                                                       : TWELVE_HOUR_FORMAT_STRING);
 
     size_t innerSize = faceWidth - 2;
 
@@ -45,7 +46,7 @@ std::array<std::string, 4> Clock::GetClockFace(bool isTwentyFourHour, time_t tim
     return clockFace;
 }
 
-std::string Clock::FormatTimeToString(const time_t& time, const std::string& format) {
+std::string Clock::formatTimeToString(const time_t& time, const std::string& format) {
     std::string formattedString {};
     formattedString.resize(format.size() + 1);
 

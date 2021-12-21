@@ -85,7 +85,8 @@ int Application::getUserInput() {
     int userInput {0};
 
     std::cin >> userInput;
-
+    std::cin.clear();
+    std::cin.ignore(10000, '\n');
     return userInput;
 }
 #pragma clang diagnostic pop

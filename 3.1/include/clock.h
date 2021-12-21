@@ -17,8 +17,7 @@ public:
     static std::array<std::string, 4> GetClockFace(bool isTwentyFourHour, time_t time, uint32_t faceWidth);
 
 private:
-    static std::string FormatTimeToString(const time_t& time, const std::string& format);
-
+    static std::string formatTimeToString(const time_t& time, const std::string& format);
 };
 
 
