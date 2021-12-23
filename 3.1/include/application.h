@@ -1,30 +1,45 @@
-//
-// Created by ozzadar on 2021-12-20.
-//
+/*
+ *  Application.h
+ *
+ *  Date: January 3rd 2022
+ *  Author: Paul Mauviel
+ */
 
 #ifndef INC_3_1_APPLICATION_H
 #define INC_3_1_APPLICATION_H
 
 #include <chrono>
+#include "clock.h"
 
+/**
+ * Main application for manipulating and displaying a clock
+ */
 class Application {
 public:
+    // Constructor, receiving clock face width as parameter for consistent sizing.
     explicit Application(uint32_t t_faceWidth = 25);
 
+    // The main application entry point and loop
     void Run();
 private:
-    void displayClocks();
+    // Displays the clock with 12 and 24 hour time side by side
+    void displayClocks() const;
+    // Displays the user menu options
     void displayMenu() const;
-
-    void addMinute();
-    void addSecond();
-    void addHour();
+    // Exits the application
     void exit();
 
-    int getUserInput();
+    // Gets an integer input from the user. -1 indicates an error
+    static int getUserInput();
 
-    std::chrono::time_point<std::chrono::system_clock> m_currentTime { std::chrono::system_clock::now() };
-    uint32_t m_faceWidth { 25 };
+    // Clears the screen by pushing new lines or using built-in terminal clear commands where available
+    static void clearScreen() ;
+
+private:
+    // The main clock
+    Clock m_clock;
+
+    // Variable for indicating whether application is running
     bool m_running { false };
 };
 
