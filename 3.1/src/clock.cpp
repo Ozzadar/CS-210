@@ -1,7 +1,7 @@
 /*
  *  Clock.cpp
  *
- *  Date: January 3rd 2022
+ *  Date: January 9th 2022
  *  Author: Paul Mauviel
  */
 
@@ -42,10 +42,10 @@ std::array<std::string, 4> Clock::GetClockFace(bool isTwentyFourHour) const {
     }
 
     // pad the time in the middle of the inner size
-    std::string paddedTime (m_faceWidth, ' ');
+    std::string paddedTime (m_faceWidth + 1, ' ');
     paddedTime[0] = '*';
-    paddedTime[m_faceWidth - 1] = '*';
-    size_t timePaddingLeft = std::ceil(static_cast<float>(innerSize - timeString.size() + 1) / 2.0);
+    paddedTime[m_faceWidth] = '*';
+    size_t timePaddingLeft = std::ceil(static_cast<float>(innerSize - timeString.size()) / 2.0);
 
     // add the time to the appropriate location in the string
     for (size_t i = timePaddingLeft, k = 0;  k < timeString.size(); i++, k++) {

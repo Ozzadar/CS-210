@@ -9,13 +9,14 @@
 #include <string>
 
 // Remove "using namespace std" as importing entire namespaces is bad practice
-// Bringing in cout, cin, and endl separately.
+// Bringing in cout, cin, and endl, string, and getline separately just to follow the conventions being taught
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
 using std::getline;
 
+// Function to get a user text response and get the first character. Return '0' if no input is given.
 char getUserResponseFirstCharacter() {
     string userResponse;
     getline(cin, userResponse);
@@ -75,6 +76,7 @@ int main(int argc, char** argv) {
 
         cout << "Do you wish to evaluate another expression? " << endl;
         userResponse = getUserResponseFirstCharacter();
+
         /*
          * This little block of code was added to ensure we only get the expected response from the user as
          * specified by Prompt item 3c.

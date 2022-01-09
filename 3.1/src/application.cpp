@@ -1,7 +1,7 @@
 /*
  *  Application.cpp
  *
- *  Date: January 3rd 2022
+ *  Date: January 9th 2022
  *  Author: Paul Mauviel
  */
 
@@ -9,6 +9,8 @@
 #include <iostream>
 #include <clock.h>
 #include <cmath>
+#include <utils.h>
+#include <thread>
 
 // Clamps the clock face to sane values to ensure proper display on reasonably sized terminals
 Application::Application(uint32_t t_faceWidth) : m_clock(std::clamp(t_faceWidth, 25U, 60U)) {}
@@ -18,11 +20,27 @@ void Application::Run() {
     m_running = true;
 
     while (m_running) {
-        // Clear the screen before beginning
-        clearScreen();
+        bool blink = true;
 
-        // Display the clocks
-        displayClocks();
+        while (!IsKeyDown(ESCAPE_KEY)) {
+            // Clear the screen before beginning
+            ClearScreen();
+
+            // Display the clocks
+            displayClocks();
+
+            // Blinks directions at the user every other frame
+            if (blink) {
+                std::string padding(m_clock.GetClockFaceWidth() / 2, ' ');
+                std::cout << padding << "*** Press Escape for Menu ***" << std::endl;
+            }
+            blink = !blink;
+
+            // sleep for a second, then add one second to the current time.
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            m_clock.addSecond();
+        }
+
         // Display the menu
         displayMenu();
 
@@ -64,7 +82,6 @@ void Application::displayClocks() const {
         std::cout << twelveHourTime[i] << "     " << twentyFourHourTime[i] << std::endl;
     }
 }
-
 
 void Application::displayMenu() const {
     // Retrieve the face width
@@ -124,9 +141,5 @@ int Application::getUserInput() {
     return userInput;
 }
 
-void Application::clearScreen() {
-    // Prints 100 empty lines to the terminal to simulate clearing the screen
-    std::string clearScreen (50, '\n');
-    std::cout << clearScreen << std::endl;
-}
+
 

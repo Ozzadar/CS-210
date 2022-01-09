@@ -1,12 +1,11 @@
 /*
  *  Clock.h
  *
- *  Date: January 3rd 2022
+ *  Date: January 9th 2022
  *  Author: Paul Mauviel
  */
 
-#ifndef INC_3_1_CLOCK_H
-#define INC_3_1_CLOCK_H
+#pragma once
 
 #include <string>
 #include <ctime>
@@ -51,6 +50,3 @@ private:
     // The current time setting on the clock -- defaults to the current local system clock time
     std::chrono::time_point<std::chrono::system_clock> m_currentTime { std::chrono::system_clock::now() };
 };
-
-
-#endif //INC_3_1_CLOCK_H

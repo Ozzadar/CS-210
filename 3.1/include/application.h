@@ -1,12 +1,11 @@
 /*
  *  Application.h
  *
- *  Date: January 3rd 2022
+ *  Date: January 9th 2022
  *  Author: Paul Mauviel
  */
 
-#ifndef INC_3_1_APPLICATION_H
-#define INC_3_1_APPLICATION_H
+#pragma once
 
 #include <chrono>
 #include "clock.h"
@@ -32,9 +31,6 @@ private:
     // Gets an integer input from the user. -1 indicates an error
     static int getUserInput();
 
-    // Clears the screen by pushing new lines or using built-in terminal clear commands where available
-    static void clearScreen() ;
-
 private:
     // The main clock
     Clock m_clock;
@@ -42,6 +38,3 @@ private:
     // Variable for indicating whether application is running
     bool m_running { false };
 };
-
-
-#endif //INC_3_1_APPLICATION_H
