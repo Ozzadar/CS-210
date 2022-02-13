@@ -1,6 +1,5 @@
 #include <Python.h>
 #include <iostream>
-#include <Windows.h>
 #include <cmath>
 #include <string>
 
@@ -22,6 +21,9 @@ void CallProcedure(string pName)
     std::strcpy(procname, pName.c_str());
 
     Py_Initialize();
+    PyRun_SimpleString("import sys");
+    PyRun_SimpleString("import os");
+    PyRun_SimpleString("sys.path.append(os.getcwd())");
     PyObject* my_module = PyImport_ImportModule("python.PythonCode");
     PyErr_Print();
     PyObject* my_function = PyObject_GetAttrString(my_module, procname);
@@ -54,6 +56,9 @@ int callIntFunc(string proc, string param)
     PyObject *pName, *pModule, *pDict, *pFunc, *pValue = nullptr, *presult = nullptr;
     // Initialize the Python Interpreter
     Py_Initialize();
+    PyRun_SimpleString("import sys");
+    PyRun_SimpleString("import os");
+    PyRun_SimpleString("sys.path.append(os.getcwd())");
     // Build the name object
     pName = PyUnicode_FromString((char*)"python.PythonCode");
     // Load the module object
@@ -105,6 +110,9 @@ int callIntFunc(string proc, int param)
     PyObject *pName, *pModule, *pDict, *pFunc, *pValue = nullptr, *presult = nullptr;
     // Initialize the Python Interpreter
     Py_Initialize();
+    PyRun_SimpleString("import sys");
+    PyRun_SimpleString("import os");
+    PyRun_SimpleString("sys.path.append(os.getcwd())");
     // Build the name object
     pName = PyUnicode_FromString((char*)"python.PythonCode");
     // Load the module object
