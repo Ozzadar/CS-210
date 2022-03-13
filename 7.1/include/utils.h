@@ -1,12 +1,12 @@
 /*
  *  utils.h
  *
- *  Date: January 31st 2022
+ *  Date: Feb 13th 2022
  *  Author: Paul Mauviel
  */
 
-#ifndef INC_6_3_UTILS_H
-#define INC_6_3_UTILS_H
+#ifndef INC_7_1_UTILS_H
+#define INC_7_1_UTILS_H
 
 // Reference: I wrote this function for assignment 5-1 (Project 2)
 // Throws an error if the string is not a valid positive number.
@@ -41,4 +41,4 @@ static int getValidInteger() {
 
     return num;
 }
-#endif //INC_6_3_UTILS_H
+#endif //INC_7_1_UTILS_H

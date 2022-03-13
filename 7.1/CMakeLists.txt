@@ -21,20 +21,25 @@ target_link_libraries(${PROJECT_NAME}
         ${Python3_LIBRARIES}
 )
 
+# If we're on windows, we need to copy the dlls into our runtime folder
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     message(INFORMATION ${Python3_RUNTIME_LIBRARY_DIRS})
 
     file(GLOB PYTHON_DLLS ${Python3_RUNTIME_LIBRARY_DIRS}/python*.dll)
 
     foreach(DLL ${PYTHON_DLLS})
-        # Copy assets into build directory -- used for non-emscripten builds
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                 COMMAND ${CMAKE_COMMAND} -E copy
                 ${DLL} ${OUTPUT_DIR})
     endforeach()
 endif()
 
-
+# This command copies all our python scripts to the running directory
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/python/ ${OUTPUT_DIR}/python)
+
+# This command copies our input data folder to the running directory
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/data/ ${OUTPUT_DIR}/data)
